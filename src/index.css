@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* optional */
+:root { background-color: #242424; }
+
+/* keyframes */
+@keyframes border-spin { to { transform: rotate(360deg); } }
+
+/* classes */
+.search-wrapper { @apply relative overflow-hidden rounded-[4px]; }
+
+.search-wrapper::before {
+  content: "";
+  background: conic-gradient(
+    rgba(251, 2, 0, 0.6) 0deg,
+    rgba(251, 198, 56, 0.6) 90deg,
+    rgba(48, 169, 83, 0.6) 180deg,
+    rgba(1, 118, 250, 0.6) 270deg,
+    rgba(251, 2, 0, 0.6) 360deg
+  );
+  @apply absolute left-[-25%] top-[-25%] h-[150%] w-[150%];
+  animation: border-spin 4s linear infinite;   /* <-- no @apply here */
+}
+
+.search-inner {
+  @apply absolute left-[1px] top-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)]
+         rounded-[3px] bg-black flex items-center justify-between px-2;
+}
+@font-face {
+  font-family: "Prototype";
+  src: url("/fonts/Prototype.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teknaf";
+  src: url("/fonts/Teknaf.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-prototype: "Prototype", ui-sans-serif, system-ui, sans-serif;
+  --font-teknaf: "Teknaf", ui-sans-serif, system-ui, sans-serif;
+}
+/* === Product Sans Regular === */
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Regular.ttf") format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Product Sans Black === */
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Black.ttf") format("truetype");
+  font-weight: 900; /* Black */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Light.ttf") format("truetype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-productsans: "Product Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* === Auto-scroll keyframes for the creators carousel === */
+@keyframes scroll-x {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .auto-scroll {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+}
